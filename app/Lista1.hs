@@ -165,9 +165,26 @@ maiores que 3.
 Exemplo:
 comprime "asdffffghjjkllllpoooi"
 "asd!4fghjjk!4lpoooi" -}
-
+comprime :: String -> String
+comprime "" = ""
+comprime s = 
+    let (iguais, resto) = span (== head s) s
+        n = length iguais
+        char = head s
+    in if n > 3 
+       then "!" ++ show n ++ [char] ++ comprime resto
+       else iguais ++ comprime resto
 
 -- Quesito 21
--- casa padrão com lista
+{- Implemente uma função que descomprima o texto resultante da função anterior. -}
+descomprime :: String -> String
+descomprime "" = ""
+descomprime ('!':resto) = 
+    let numeroStr = takeWhile (\c -> c >= '0' && c <= '9') resto
+        num = read numeroStr :: Int
+        caractere = head (drop (length numeroStr) resto)
+        cauda = drop (length numeroStr + 1) resto
+    in replicate num caractere ++ descomprime cauda
+descomprime (x:xs) = x : descomprime xs
 
                 

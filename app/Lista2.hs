@@ -74,7 +74,21 @@ duasListas = concat [[(x,y) | y <- [3, 4]] | x <- [1, 2]]
 https://emanoelbarreiros.github.io/funcional/haskell-5#a-fun%C3%A7%C3%A3o-zip
 --
 Dica: Procure usar a função zip. -}
+buscar :: Eq a => a -> [(a, b)] -> [b]
+buscar k xs = [ v |(k', v) <- xs, k' == k]
 
+posicoes :: Eq a => a -> [a] -> [Int]
+posicoes x xs = buscar x (zip xs [0..])
+
+-- Quesito 9
+{- Escreva a função capaz de calcular o produto escalar de duas listas de inteiros xs e ys de tamanho n, 
+que é dado pelo produto dos inteiros em posições correspondentes:
+     n-1
+      Σ  (xs_i * ys_i)
+     i=0
+Dica: Procure usar a função zip. -}
+prodEscalar :: [Int] -> [Int] -> Int
+prodEscalar xs ys = sum [x*y | (x, y) <- zip xs ys]
 
 
 
