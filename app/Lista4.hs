@@ -139,7 +139,7 @@ altMap func1 func2 (x:xs) = func1 x : altMap func2 func1 xs
 curry que converte uma função em um par (tupla) em uma versão currificada. 
 Defina também uma função chamada uncurry que converte uma função currificada 
 para dois argumentos em uma função que recebe um par (tupla) -}
-curry :: ((a -> b) -> c) -> a -> b -> c
+curry :: ((a, b) -> c) -> a -> b -> c
 curry func x y = func (x, y)
 
 uncurry :: (a -> b -> c) -> (a, b) -> c
